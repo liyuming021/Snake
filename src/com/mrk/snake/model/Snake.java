@@ -25,7 +25,10 @@ public class Snake {
 			body.addFirst(new Point(x++,y));
 		}
 	}
-	//画蛇
+	/**
+	 * 用画笔绘制蛇
+	 * @param g 接受Graphics对象
+	 */
 	public void drawMe(Graphics g) {
 		//每一格身体上的点
 		for(Point p : body) {

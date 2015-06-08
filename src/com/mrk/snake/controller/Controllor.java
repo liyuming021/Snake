@@ -5,8 +5,8 @@ import com.mrk.snake.view.GamePanel;
 
 public class Controllor {
 
-	public Snake snake;
-	public GamePanel gamePanel;	
+	private Snake snake;
+	private GamePanel gamePanel;	
 	public Controllor(Snake snake, GamePanel gamePanel) {
 		super();
 		this.snake = snake;
@@ -15,4 +15,8 @@ public class Controllor {
 	public void newGame() {
 		gamePanel.redisplay(snake);
 	}
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+	
 }

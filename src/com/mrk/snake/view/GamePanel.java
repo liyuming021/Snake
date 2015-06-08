@@ -9,6 +9,8 @@ import com.mrk.snake.util.Global;
 
 public class GamePanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Snake snake;
 	public GamePanel() {
 		//内容面板的大小
