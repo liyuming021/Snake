@@ -39,15 +39,19 @@ public class Ground {
 			rocks[0][j] = rocks[Global.WIDTH-1][j] = true;
 	}
 	//判断蛇是否吃到石头
-	public boolean isSnakeEarRock(Snake snake) {
+	public boolean isSnakeEatRock(Snake snake) {
 		return rocks[snake.getHead().x][snake.getHead().y];
 	}
-	
-	public Point getFreePoint() {
+	/**
+	 * 返回有效的食物的位置，有两个要求：不能在障碍物上，不能在蛇自己身上
+	 * version4.1 增加参数snake,增加while第二个条件
+	 * @return
+	 */
+	public Point getFreePoint(Snake snake) {
 		do {
 			freePoint.x = random.nextInt(Global.WIDTH);
 			freePoint.y = random.nextInt(Global.HEIGHT);
-		}while(rocks[freePoint.x][freePoint.y]);
+		}while(rocks[freePoint.x][freePoint.y] || snake.isPointOnSnake(freePoint));
 		return freePoint;
 	}
 	

@@ -8,15 +8,15 @@ import java.util.Random;
 import com.mrk.snake.util.Global;
 
 public class Food extends Point{
-
-	private static final long serialVersionUID = 1L;
-	
 	//食物颜色
+	private Color[] colors = {Color.red,Color.blue,Color.pink,
+							  Color.green,Color.orange,Color.black};
 	private Color color = new Color(0xcc0033);
+	//随机数
+	private Random random = new Random();
 	
 	public Food() {
 	}
-	
 	public Food(Point p) {
 		super(p);
 	}
@@ -25,13 +25,12 @@ public class Food extends Point{
 	 * @return
 	 */
 	public Point getNew() {
-		Random random = new Random();
 		Point p = new Point();
 		p.x = random.nextInt(Global.WIDTH);
 		p.y = random.nextInt(Global.HEIGHT);
+		
 		return p;
 	}
-	
 	/**
 	 * 判断蛇是否吃到了食物，即蛇头是否与食物为同一个点
 	 * @param snake
@@ -40,14 +39,18 @@ public class Food extends Point{
 	public boolean isSnakeEatFood(Snake snake) {
 		return this.equals(snake.getHead());
 	}
-	
+
 	/**
 	 * 在面板上画蛇
 	 * @param g
 	 */
-	public void drawMe(Graphics g) {
+	public synchronized void drawMe(Graphics g) {
 		g.setColor(color);
 		g.fill3DRect(x * Global.CELL_WIDTH, y * Global.CELL_HEIGHT, 
 				Global.CELL_WIDTH, Global.CELL_HEIGHT, true);
+	}
+	//改变食物颜色
+	public void changeColor() {		
+		color = colors[random.nextInt(colors.length)];
 	}
 }

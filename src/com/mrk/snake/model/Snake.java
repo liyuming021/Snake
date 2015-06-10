@@ -137,4 +137,26 @@ public class Snake {
 	public void dead() {
 		this.live = false;
 	}
+	
+	public boolean isEatBody() {
+		for(int i=1; i<body.size(); i++) {
+			if(getHead().equals(body.get(i))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * 判断某点是否在蛇身上
+	 * @param p
+	 * @return
+	 */
+	public boolean isPointOnSnake(Point p) {
+		for(Point point : body) {
+			if(point.equals(p)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
